@@ -31,8 +31,10 @@ pipeline {
 
     stage('Upload App Image') {
           steps{
-              docker.withRegistry( vprofileRegistry, registryCredential ) {
-                dockerImage.push("$BUILD_NUMBER")
+              script{
+                  docker.withRegistry( vprofileRegistry, registryCredential ) {
+                    dockerImage.push("$BUILD_NUMBER")
+                  }
               }
           }
      }
