@@ -24,7 +24,10 @@ pipeline {
     stage('Build App Image') {
        steps {
              script {
-                 sh 'docker build -t ${appRegistry}:${BUILD_NUMBER} ./Docker-files/app/multistage/'
+                  docker.withRegistry( vprofileRegistry, registryCredential ) {
+                    dockerImage.push("$BUILD_NUMBER")
+                    dockerImage.push('latest')
+                  }
              }
         }
     }
