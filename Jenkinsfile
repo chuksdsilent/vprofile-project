@@ -21,26 +21,20 @@ pipeline {
         sh 'mvn test'
       }
     }
-
-
     stage('Build App Image') {
        steps {
-       
-         script {
-             sh 'docker build -t ${appRegistry}:${BUILD_NUMBER} ./Docker-files/app/multistage/'
+             script {
+                 sh 'docker build -t ${appRegistry}:${BUILD_NUMBER} ./Docker-files/app/multistage/'
              }
-
-     }
-    
+        }
     }
 
     stage('Upload App Image') {
           steps{
-            script {
-                sh 'docker push ${appRegistry}:${BUILD_NUMBER}'
-            }
+              docker.withRegistry( vprofileRegistry, registryCredential ) {
+                dockerImage.push("$BUILD_NUMBER")
+              }
           }
      }
-     
   }
 }
