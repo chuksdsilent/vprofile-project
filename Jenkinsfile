@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        registryCredential = 'ecr:us-east-2:awscreds'
-        appRegistry = "951401132355.dkr.ecr.us-east-2.amazonaws.com/vprofileappimg"
-        vprofileRegistry = "https://951401132355.dkr.ecr.us-east-2.amazonaws.com"
+        registryCredential = 'ecr:us-east-1:aws-cred'
+        appRegistry = "598478793993.dkr.ecr.us-east-1.amazonaws.com/vprofileappimg"
+        vprofileRegistry = "https://598478793993.dkr.ecr.us-east-1.amazonaws.com"
         cluster = "vprofile"
         service = "vprofileappsvc"
     }
@@ -26,7 +26,7 @@ pipeline {
        steps {
        
          script {
-                dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+             sh 'docker build -t ${appRegistry}:${BUILD_NUMBER ./Docker-files/app/multistage/'
              }
 
      }
