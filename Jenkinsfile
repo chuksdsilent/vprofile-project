@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registryCredential = 'ecr:us-east-1:aws-cred'
+        registryCredential = 'ecr:us-east-1:aws-creds'
         appRegistry = "598478793993.dkr.ecr.us-east-1.amazonaws.com/vprofileappimg"
         vprofileRegistry = "https://598478793993.dkr.ecr.us-east-1.amazonaws.com"
         cluster = "vprofile"
