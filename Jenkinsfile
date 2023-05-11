@@ -7,14 +7,15 @@ pipeline {
         cluster = "vprofile"
         service = "vprofileappsvc"
     }
+     tools {
+        maven 'maven_3_5_0'
+    }
   stages {
     stage('Fetch code'){
       steps {
         git branch: 'docker', url: 'https://github.com/devopshydclub/vprofile-project.git'
       }
     }
-
-
     stage('Test'){
       steps {
         sh 'mvn test'
