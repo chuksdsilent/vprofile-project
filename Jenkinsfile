@@ -26,7 +26,7 @@ pipeline {
        steps {
        
          script {
-             sh 'docker build -t ${appRegistry}:${BUILD_NUMBER ./Docker-files/app/multistage/'
+             sh 'docker build -t ${appRegistry}:${BUILD_NUMBER} ./Docker-files/app/multistage/'
              }
 
      }
@@ -36,10 +36,7 @@ pipeline {
     stage('Upload App Image') {
           steps{
             script {
-              docker.withRegistry( vprofileRegistry, registryCredential ) {
-                dockerImage.push("$BUILD_NUMBER")
-                dockerImage.push('latest')
-              }
+                sh 'docker push ${appRegistry}:${BUILD_NUMBER}'
             }
           }
      }
