@@ -44,5 +44,13 @@ pipeline {
               }
           }
      }
+     
+    stage('Upload App Image') {
+          steps{
+              withAWS(credentials: 'awss-creds', region: 'us-east-1'){
+                  sh 'aws ecs update-service --cluster ${cluster} --service ${service
+ --forece-new-deployment
+          }
+     }
   }
 }
